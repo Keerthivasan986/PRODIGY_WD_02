@@ -1,0 +1,337 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Stack header and main content vertically */
+    min-height: 100vh;
+    background-color: #e5e8ed; /* Light mode background */
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Dark Mode for the entire body --- */
+body.dark-mode {
+    background-color: #2c2c2c; /* Dark background for dark mode */
+    color: #f0f2f5; /* Light text for dark mode */
+}
+
+/* --- App Header (Changes with dark mode) --- */
+.app-header {
+    background-color: #000; /* Black background in light mode */
+    color: #fff; /* White text */
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .app-header {
+    background-color: #383838; /* Dark grey background in dark mode */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.clock-icon, .alarm-icon {
+    font-size: 24px;
+    color: #fff; /* Icons remain white */
+}
+
+.header-like-button {
+    background-color: #e53935; /* Red color */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.header-like-button:hover {
+    background-color: #c62828;
+}
+
+/* --- Main Content Area (Changes with dark mode) --- */
+.main-content {
+    flex-grow: 1;
+    background: linear-gradient(135deg, #f4bfd8, #d0b0f7); /* Gradient in light mode */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+body.dark-mode .main-content {
+    background: #2c2c2c; /* Solid dark background in dark mode */
+}
+
+/* --- Stopwatch Card (Changes with dark mode) --- */
+.stopwatch-card {
+    background-color: #ffffff; /* White in light mode */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .stopwatch-card {
+    background-color: #3f3f3f; /* Dark grey in dark mode */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: #f0f2f5;
+}
+body.dark-mode .stopwatch-card .time-display {
+    color: #e0e0e0;
+}
+body.dark-mode .stopwatch-card .laps-container {
+    background-color: #606060;
+    border-color: #888;
+}
+body.dark-mode .stopwatch-card #lapList li {
+    color: #e0e0e0; /* Lap item text in dark mode */
+}
+
+.time-display {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #444; /* Time display color in light mode */
+    font-family: 'Courier New', monospace;
+}
+
+/* Button Layout using Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.buttons button {
+    background-color: #6a1a8f; /* Purple */
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+#lapButton {
+    grid-column: 1 / span 3;
+}
+
+.buttons button:hover {
+    background-color: #5b157a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.buttons button:active {
+    background-color: #4e1268;
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Lap List Container */
+.laps-container {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff; /* White in light mode */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#lapList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+#lapList li {
+    padding: 5px 0;
+    border-bottom: none; /* Removed border-bottom for casual look */
+    font-size: 15px;
+    color: #555; /* Dark text in light mode */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Scrollbar Styling */
+.laps-container::-webkit-scrollbar {
+    width: 8px;
+}
+.laps-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.laps-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+.laps-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* --- Toggle Mode Button (Bottom Right - Changes with dark mode) --- */
+.toggle-mode-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333; /* Dark background in light mode */
+    color: #fff; /* Light text color for light mode */
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .toggle-mode-container {
+    background-color: #555; /* Slightly lighter dark background in dark mode */
+    color: #f0f2f5; /* Lighter text color for dark mode */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.toggle-text-bottom {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.toggle-switch-bottom {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.toggle-switch-bottom input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch-bottom .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bbb; /* Lighter grey for slider track in light mode */
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+body.dark-mode .toggle-switch-bottom .slider {
+    background-color: #777; /* Darker grey for slider track in dark mode */
+}
+
+.toggle-switch-bottom .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggle-switch-bottom input:checked + .slider {
+    background-color: #4CAF50; /* Green for "on" state of toggle */
+}
+
+.toggle-switch-bottom input:checked + .slider:before {
+    transform: translateX(20px); /* Move circle to the right */
+}
+
+/* Custom Alert styling */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+body.dark-mode .custom-alert {
+    background-color: #4a4a4a;
+    border-color: #666;
+    color: #f0f2f5;
+}
+
+.custom-alert.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-alert h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+body.dark-mode .custom-alert h3 {
+    color: #f0f2f5;
+}
+
+.custom-alert p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.custom-alert button {
+    background-color: #6a1a8f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.custom-alert button:hover {
+    background-color: #5b157a;
+}

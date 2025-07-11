@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prodigy Infotech Task-02</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -14,7 +15,16 @@
             <h1 class="app-title">Smart Stopwatch</h1>
             <i class="fas fa-bell alarm-icon"></i>
         </div>
-        <button class="header-like-button" id="likeButton">❤️ Like</button>
+
+        <div class="header-right">
+            <div class="toggle-mode-header">
+                <label class="toggle-switch-header">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="toggle-text-header" id="modeText"></span>
+            </div>
+        </div>
     </header>
 
     <div class="main-content">
@@ -29,15 +39,7 @@
             <div class="laps-container">
                 <ul id="lapList"></ul>
             </div>
-        </div>
-
-        <div class="toggle-mode-container">
-            <label class="toggle-switch-bottom">
-                <input type="checkbox" id="darkModeToggle">
-                <span class="slider round"></span>
-            </label>
-            <span class="toggle-text-bottom" id="modeText"></span>
-        </div>
+            </div>
     </div>
 
     <script src="script.js"></script>

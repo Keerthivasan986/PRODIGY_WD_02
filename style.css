@@ -1,143 +1,227 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;700&display=swap');
+
 /* General Styling */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Modern, clean font */
     display: flex;
-    flex-direction: column; /* Stack header and main content vertically */
+    flex-direction: column;
     min-height: 100vh;
-    background-color: #e5e8ed; /* Light mode background */
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96); /* More vibrant gradient */
     color: #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background 0.5s ease, color 0.5s ease; /* Smooth transition for background */
+    overflow-x: hidden; /* Prevent horizontal scroll on small overflows */
 }
 
 /* --- Dark Mode for the entire body --- */
 body.dark-mode {
-    background-color: #2c2c2c; /* Dark background for dark mode */
-    color: #f0f2f5; /* Light text for dark mode */
+    background: linear-gradient(135deg, #2c3e50, #000000); /* Darker, sleek gradient */
+    color: #f0f2f5;
 }
 
 /* --- App Header (Changes with dark mode) --- */
 .app-header {
-    background-color: #000; /* Black background in light mode */
-    color: #fff; /* White text */
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent for depth */
+    color: #fff;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px); /* Subtle blur effect */
 }
 
 body.dark-mode .app-header {
-    background-color: #383838; /* Dark grey background in dark mode */
+    background-color: rgba(56, 56, 56, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px; /* Increased gap */
+}
+
+.header-right { /* Container for right-aligned items (now just the toggle) */
+    display: flex;
+    align-items: center;
+    /* gap: 20px; Removed, as only one item now */
 }
 
 .app-title {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 30px; /* Slightly larger title */
+    font-weight: 700; /* Bolder font */
     margin: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Subtle text shadow */
 }
 
 .clock-icon, .alarm-icon {
-    font-size: 24px;
-    color: #fff; /* Icons remain white */
+    font-size: 28px; /* Larger icons */
+    color: #a8c0ff; /* Accent color for icons */
 }
 
-.header-like-button {
-    background-color: #e53935; /* Red color */
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 5px;
-    font-size: 16px;
+body.dark-mode .clock-icon,
+body.dark-mode .alarm-icon {
+    color: #8e44ad; /* Dark mode accent for icons */
+}
+
+/* REMOVED: Styling for the Time Traveler button */
+
+/* Toggle Mode in Header */
+.toggle-mode-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slight background for visibility */
+    border-radius: 20px;
+    padding: 8px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .toggle-mode-header {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.toggle-text-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff; /* White text for header toggle */
+    white-space: nowrap;
+}
+
+body.dark-mode .toggle-text-header {
+    color: #f0f2f5;
+}
+
+.toggle-switch-header {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.toggle-switch-header input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch-header .slider {
+    position: absolute;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #bbb;
+    transition: 0.4s;
+    border-radius: 20px;
 }
 
-.header-like-button:hover {
-    background-color: #c62828;
+body.dark-mode .toggle-switch-header .slider {
+    background-color: #777;
 }
 
-/* --- Main Content Area (Changes with dark mode) --- */
+.toggle-switch-header .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch-header input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+.toggle-switch-header input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+
+/* --- Main Content Area --- */
 .main-content {
     flex-grow: 1;
-    background: linear-gradient(135deg, #f4bfd8, #d0b0f7); /* Gradient in light mode */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     position: relative;
-    transition: background 0.3s ease;
 }
 
-body.dark-mode .main-content {
-    background: #2c2c2c; /* Solid dark background in dark mode */
-}
-
-/* --- Stopwatch Card (Changes with dark mode) --- */
+/* --- Stopwatch Card --- */
 .stopwatch-card {
-    background-color: #ffffff; /* White in light mode */
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Deeper shadow */
+    padding: 35px; /* More padding */
     text-align: center;
     width: 90%;
-    max-width: 450px;
+    max-width: 480px; /* Slightly wider */
     box-sizing: border-box;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 body.dark-mode .stopwatch-card {
-    background-color: #3f3f3f; /* Dark grey in dark mode */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(45, 45, 45, 0.95); /* Darker transparent grey */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     color: #f0f2f5;
 }
 body.dark-mode .stopwatch-card .time-display {
-    color: #e0e0e0;
+    color: #ffe082; /* Warm color for time display in dark mode */
 }
 body.dark-mode .stopwatch-card .laps-container {
-    background-color: #606060;
-    border-color: #888;
+    background-color: #4a4a4a;
+    border-color: #666;
 }
 body.dark-mode .stopwatch-card #lapList li {
-    color: #e0e0e0; /* Lap item text in dark mode */
+    color: #e0e0e0;
 }
+/* REMOVED: Dark mode styles for time traveler container/list/buttons */
+
 
 .time-display {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #444; /* Time display color in light mode */
-    font-family: 'Courier New', monospace;
+    font-family: 'Roboto Mono', monospace; /* Monospaced for numbers */
+    font-size: 60px; /* Much larger */
+    font-weight: 700;
+    margin-bottom: 35px;
+    color: #4CAF50; /* Green accent for time */
+    letter-spacing: -2px; /* Tighter letter spacing */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Button Layout using Grid */
 .buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 18px; /* Increased gap */
+    margin-bottom: 30px;
 }
 
 .buttons button {
-    background-color: #6a1a8f; /* Purple */
+    background-color: #8e44ad; /* Deeper purple */
     color: white;
     border: none;
-    padding: 12px 0;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 15px 0; /* More padding */
+    border-radius: 10px; /* More rounded */
+    font-size: 17px; /* Slightly larger text */
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #lapButton {
@@ -145,25 +229,26 @@ body.dark-mode .stopwatch-card #lapList li {
 }
 
 .buttons button:hover {
-    background-color: #5b157a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #9b59b6; /* Lighter on hover */
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
 }
 
 .buttons button:active {
-    background-color: #4e1268;
+    background-color: #7f389f;
     transform: translateY(0);
-    box-shadow: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* Lap List Container */
 .laps-container {
-    max-height: 150px;
+    max-height: 250px; /* Adjusted height since time traveler container is gone */
     overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #fff; /* White in light mode */
+    border: 1px solid #e0e0e0; /* Lighter border */
+    border-radius: 8px;
+    padding: 12px;
+    /* margin-bottom: 25px; Adjusted or removed if no element follows */
+    background-color: #f8f8f8; /* Off-white background */
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -175,21 +260,29 @@ body.dark-mode .stopwatch-card #lapList li {
 }
 
 #lapList li {
-    padding: 5px 0;
-    border-bottom: none; /* Removed border-bottom for casual look */
-    font-size: 15px;
-    color: #555; /* Dark text in light mode */
+    padding: 8px 0; /* More padding */
+    font-size: 16px; /* Slightly larger font */
+    color: #555;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px dashed #eee; /* Finer dashed line */
 }
 
-/* Scrollbar Styling */
+#lapList li:last-child {
+    border-bottom: none;
+}
+
+/* REMOVED: Time Traveler Container styles */
+/* REMOVED: Styles for the Restore button */
+
+
+/* Scrollbar Styling (applies only to lap container now) */
 .laps-container::-webkit-scrollbar {
     width: 8px;
 }
 .laps-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #e0e0e0; /* Lighter track */
     border-radius: 10px;
 }
 .laps-container::-webkit-scrollbar-thumb {
@@ -200,138 +293,5 @@ body.dark-mode .stopwatch-card #lapList li {
     background: #555;
 }
 
-/* --- Toggle Mode Button (Bottom Right - Changes with dark mode) --- */
-.toggle-mode-container {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333; /* Dark background in light mode */
-    color: #fff; /* Light text color for light mode */
-    padding: 10px 20px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
 
-body.dark-mode .toggle-mode-container {
-    background-color: #555; /* Slightly lighter dark background in dark mode */
-    color: #f0f2f5; /* Lighter text color for dark mode */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-.toggle-text-bottom {
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.toggle-switch-bottom {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    flex-shrink: 0;
-}
-
-.toggle-switch-bottom input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.toggle-switch-bottom .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #bbb; /* Lighter grey for slider track in light mode */
-    transition: 0.4s;
-    border-radius: 20px;
-}
-
-body.dark-mode .toggle-switch-bottom .slider {
-    background-color: #777; /* Darker grey for slider track in dark mode */
-}
-
-.toggle-switch-bottom .slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-}
-
-.toggle-switch-bottom input:checked + .slider {
-    background-color: #4CAF50; /* Green for "on" state of toggle */
-}
-
-.toggle-switch-bottom input:checked + .slider:before {
-    transform: translateX(20px); /* Move circle to the right */
-}
-
-/* Custom Alert styling */
-.custom-alert {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-body.dark-mode .custom-alert {
-    background-color: #4a4a4a;
-    border-color: #666;
-    color: #f0f2f5;
-}
-
-.custom-alert.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.custom-alert h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-body.dark-mode .custom-alert h3 {
-    color: #f0f2f5;
-}
-
-.custom-alert p {
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.custom-alert button {
-    background-color: #6a1a8f;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.2s ease;
-}
-
-.custom-alert button:hover {
-    background-color: #5b157a;
-}
+/* REMOVED: Custom Alert styling (for time traveler confirmation) */

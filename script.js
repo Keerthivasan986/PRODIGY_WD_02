@@ -6,15 +6,18 @@ const resetButton = document.getElementById('resetButton');
 const lapButton = document.getElementById('lapButton');
 const lapList = document.getElementById('lapList');
 
+// Adjusted to refer to new header toggle elements
 const darkModeToggle = document.getElementById('darkModeToggle');
-const likeButton = document.getElementById('likeButton');
-const modeText = document.getElementById('modeText'); // Get the text element for mode
+const modeText = document.getElementById('modeText'); // This element is now in the header
+
+// REMOVED: timeTravelerButton and timeTravelerList elements
 
 let startTime = 0;
 let elapsedTime = 0;
 let timerInterval;
 let isRunning = false;
 let lapCounter = 0;
+// REMOVED: timeTravelerSnapshots array
 
 // Function to format time for display
 function formatTime(ms) {
@@ -61,7 +64,7 @@ resetButton.addEventListener('click', () => {
     startTime = 0;
     lapCounter = 0;
     timeDisplay.textContent = "00:00:00.000";
-    lapList.innerHTML = '';
+    lapList.innerHTML = ''; // Clear lap times
 });
 
 // Lap button functionality
@@ -86,42 +89,22 @@ darkModeToggle.addEventListener('change', () => {
     }
 });
 
-// Like Button functionality (with custom alert)
-likeButton.addEventListener('click', () => {
-    const alertDiv = document.createElement('div');
-    alertDiv.classList.add('custom-alert');
-
-    const heading = document.createElement('h3');
-    heading.textContent = 'This page says';
-
-    const message = document.createElement('p');
-    message.innerHTML = 'Thank you for liking the stopwatch! ❤️';
-
-    const okButton = document.createElement('button');
-    okButton.textContent = 'OK';
-    okButton.addEventListener('click', () => {
-        alertDiv.classList.remove('show');
-        setTimeout(() => alertDiv.remove(), 300);
-    });
-
-    alertDiv.appendChild(heading);
-    alertDiv.appendChild(message);
-    alertDiv.appendChild(okButton);
-    document.body.appendChild(alertDiv);
-
-    setTimeout(() => alertDiv.classList.add('show'), 10);
-});
+// REMOVED: Function to render time traveler snapshots (renderTimeTravelerSnapshots)
+// REMOVED: Function to restore a saved snapshot (restoreSnapshot)
+// REMOVED: Time Traveler button functionality (event listener for timeTravelerButton)
 
 // Initialize time display and mode text on load
 timeDisplay.textContent = "00:00:00.000";
 
-// --- IMPORTANT FIX: Set initial mode text based on the toggle's initial state ---
-// Check if the toggle is initially checked (e.g., if set via browser's persistence or HTML attribute)
+// Set initial mode text based on the toggle's initial state
+// This now correctly targets the header toggle elements
 if (darkModeToggle.checked) {
     document.body.classList.add('dark-mode');
-    modeText.textContent = "Dark"; // If it starts checked, show "Dark"
+    modeText.textContent = "Dark";
 } else {
     document.body.classList.remove('dark-mode');
-    modeText.textContent = "Light"; // If it starts unchecked, show "Light"
+    modeText.textContent = "Light";
 }
-// -------------------------------------------------------------------------------
+
+// REMOVED: Function to load time traveler snapshots from localStorage on page load (loadTimeTravelerSnapshots)
+// REMOVED: Call to loadTimeTravelerSnapshots()
